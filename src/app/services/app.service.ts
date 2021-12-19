@@ -12,6 +12,8 @@ export class AppService {
   constructor(private _httClient: HttpClient, private  _router: Router) { }
 
   getListItems() {
-    this._httClient.get(`${this.url}/posts?_page=0&_limit=10`);
+    return this._httClient.get(`${this.url}/posts?_page=0&_limit=10`);
   }
+  
+
 }

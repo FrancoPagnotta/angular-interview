@@ -8,10 +8,17 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private _appService: AppService) { }
+  listItems: Array<any> = [];
 
-  ngOnInit(): void {
-    this._appService.getListItems();
+  constructor(private _appService: AppService) { 
+
+    this._appService.getListItems()
+      .subscribe((res: any) => {
+        this.listItems = res;
+        console.log(this.listItems);
+      });
   }
+
+  ngOnInit(): void {}
 
 }
