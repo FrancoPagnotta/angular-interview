@@ -2,10 +2,13 @@
 	<h1> Detail <small> Post: {{ postId }} </small> </h1>
 	<hr>
 
-	<div class="card text-white bg-dark">
+	<div class="card text-white bg-dark p-3">
 		<div class="card-body">
 			<h5 class="card-title"> {{ post.title }} </h5>
 			<p class="card-text"> {{ post.body }} </p>
+			<h4 class="mt-5"> Comments: </h4>
+			<hr>
+				<app-comments></app-comments>
 			<a [routerLink]="['/posts']" href="#" class="btn btn-danger">Come back</a>
 		</div>
 	</div>
