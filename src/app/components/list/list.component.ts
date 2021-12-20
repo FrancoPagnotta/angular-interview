@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
@@ -10,7 +11,8 @@ export class ListComponent implements OnInit {
 
   listItems: Array<any> = [];
 
-  constructor(private _appService: AppService) { 
+  constructor(private _appService: AppService,
+              private _router: Router) { 
 
     this._appService.getListItems()
       .subscribe((res: any) => {
@@ -20,5 +22,10 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  viewItem(id: number) {
+    console.log(id);
+    this._router.navigate(['/post',id]);
+  }
 
 }

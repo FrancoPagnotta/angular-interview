@@ -15,7 +15,7 @@
 		  <td> {{ item.id }} </td>
 		  <td> {{ item.title }} </td>
 		  <td>
-			  <button class="btn btn-outline-primary"> View </button>
+			  <button (click)="viewItem(item.id)" class="btn btn-outline-primary"> View </button>
 		  </td>
 		</tr>
 	  </tbody>
