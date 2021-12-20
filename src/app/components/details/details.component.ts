@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
 
@@ -9,7 +9,7 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class DetailsComponent implements OnInit {
 
-  postId: any;
+  postId: number;
   post: any = {};
 
 
@@ -20,6 +20,8 @@ export class DetailsComponent implements OnInit {
       this.postId = res.id;
       this.getItem(this.postId);
     });
+
+    this._authService.getComments(this.postId)
     
   }
 

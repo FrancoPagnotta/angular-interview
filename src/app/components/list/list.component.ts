@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
 
@@ -17,14 +17,12 @@ export class ListComponent implements OnInit {
     this._appService.getListItems()
       .subscribe((res: any) => {
         this.listItems = res;
-        console.log(this.listItems);
       });
   }
 
   ngOnInit(): void {}
 
   viewItem(id: number) {
-    console.log(id);
     this._router.navigate(['/post',id]);
   }
 

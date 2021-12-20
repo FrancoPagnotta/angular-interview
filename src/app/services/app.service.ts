@@ -14,7 +14,7 @@ export class AppService {
   constructor(private _httClient: HttpClient) { }
 
   getListItems() {
-    return this._httClient.get(`${this.url}/posts?_page=0&_limit=10`)
+    return this._httClient.get(`${this.url}/posts?_page=0&_limit=10`) // tipar metodos y tipar get 
       .pipe(
         map((res: any) => {
           return res;

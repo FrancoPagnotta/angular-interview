@@ -8,8 +8,8 @@
 			<p class="card-text"> {{ post.body }} </p>
 			<h5 class="mt-5"> Comments: </h5>
 			<hr>
-				<app-comments></app-comments>
-			<a [routerLink]="['/posts']" href="#" class="btn btn-danger">Come back</a>
+				<app-comments [id]="postId" ></app-comments>
+			<a [routerLink]="['/posts']" href="#" class="btn btn-danger"> Come back </a>
 		</div>
 	</div>
 </div>
