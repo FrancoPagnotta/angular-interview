@@ -11,7 +11,7 @@ export class AppService {
 
   private url = 'https://jsonplaceholder.typicode.com';
 
-  constructor(private _httClient: HttpClient, private  _router: Router) { }
+  constructor(private _httClient: HttpClient) { }
 
   getListItems() {
     return this._httClient.get(`${this.url}/posts?_page=0&_limit=10`)
@@ -24,6 +24,10 @@ export class AppService {
   
   getListItem(id: number) {
     return this._httClient.get(`${this.url}/posts/${id}`);
+  }
+  
+  getComments(id: number) {
+    return this._httClient.get(`${this.url}/posts/${id}/comments`);
   }
 
 }
