@@ -1,49 +1,55 @@
-<ol class="list-group m-5">
-  <li *ngFor="let apiComment of apiComments" class="list-group-item d-flex justify-content-between align-items-start mb-3 rounded-3">
-    <div class="ms-2 me-auto">
-      <div>
-		<p> <b> Name: </b> {{ apiComment.name }} </p>
-	  </div>
-      <div>
-		<p> <b> Email: </b> {{ apiComment.email }} </p>
-	  </div>
-		<p> <b> Comment: </b> {{ apiComment.body }} </p>
-    </div>
-  </li>
-
-  <li *ngFor="let comment of comments, let i = index" class="list-group-item d-flex justify-content-between align-items-start mb-3 rounded-3 fadeIn">
-    <div class="ms-2 me-auto">
-      <div>
-		<p> <b> Name: </b> {{ comment.name }} </p>
-	  </div>
-      <div>
-		<p> <b> Email: </b> {{ comment.email }} </p>
-	  </div>
-		<p> <b> Comment: </b> {{ comment.body }} </p>
-    </div>
-	<button (click)="deleteComment(i)" class="btn btn-outline-danger">
-		<i class="bi bi-trash"></i>
-	</button>
-  </li>
-</ol>
-
-<form [formGroup]="form" (ngSubmit)="save()" class="form bg-white text-dark m-5 p-4 rounded-3">
-	<div class="mb-3">
-		<label for="exampleFormControlInput1" class="form-label"> Name </label>
-		<input [class.is-invalid]="inputStatus('name')" formControlName="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Luis">
-		<label *ngIf="inputStatus('name')" class="text-danger fadeIn"> please enter at least 3 characters </label>
-	</div>
-	<div class="mb-3">
-		<label for="exampleFormControlInput1" class="form-label"> Email address </label>
-		<input [class.is-invalid]="inputStatus('email')" formControlName="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-		<label *ngIf="inputStatus('email')" class="text-danger fadeIn"> please enter an email like name@example.com </label>
-	</div>
-	<div class="mb-3">
-		<label for="exampleFormControlTextarea1" class="form-label"> Comment </label>
-		<textarea [class.is-invalid]="inputStatus('body')" formControlName="body" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write your comment here..."></textarea>
-		<label *ngIf="inputStatus('body')" class="text-danger fadeIn"> please enter between 10 and 30 characters </label>
-	</div>
-	<div class="text-center">
-		<button class="btn btn-outline-primary w-25"> Submit </button>
-	</div>
-</form>
+<div class="container d-flex flex-column align-items-center">
+	<ol class="list-group m-5">
+	  <li *ngFor="let apiComment of apiComments" class="list-group-item d-flex justify-content-between align-items-start mb-3 rounded-3 border-1 border-dark">
+		<div class="ms-2 me-auto">
+		  <div>
+			<p> <b> Name: </b> {{ apiComment.name }} </p>
+		  </div>
+		  <div>
+			<p> <b> Email: </b> {{ apiComment.email }} </p>
+		  </div>
+			<p> <b> Comment: </b> {{ apiComment.body }} </p>
+		</div>
+	  </li>
+	
+	  <li *ngFor="let comment of comments, let i = index" class="list-group-item d-flex justify-content-between align-items-start mb-3 border-1 border-dark rounded-3 fadeIn">
+		<div class="ms-2 me-auto">
+		  <div>
+			<p> <b> Name: </b> {{ comment.name }} </p>
+		  </div>
+		  <div>
+			<p> <b> Email: </b> {{ comment.email }} </p>
+		  </div>
+			<p> <b> Comment: </b> {{ comment.body }} </p>
+		</div>
+		<button (click)="deleteComment(i)" class="btn btn-outline-danger">
+			<i class="bi bi-trash"></i>
+		</button>
+	  </li>
+	</ol>
+	
+	<form [formGroup]="form" (ngSubmit)="save()" class="form border border-2 border-primary text-dark mb-5 p-4 rounded-3 w-50">
+		<div class="mb-3">
+			<label for="exampleFormControlInput1" class="form-label"> Name </label>
+			<input [class.is-invalid]="inputStatus('name')" formControlName="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Luis">
+			<label *ngIf="inputStatus('name')" class="text-danger fadeIn"> please enter at least 3 characters </label>
+		</div>
+		<div class="mb-3">
+			<label for="exampleFormControlInput1" class="form-label"> Email address </label>
+			<input [class.is-invalid]="inputStatus('email')" formControlName="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+			<label *ngIf="inputStatus('email')" class="text-danger fadeIn"> please enter an email like name@example.com </label>
+		</div>
+		<div class="mb-3">
+			<label for="exampleFormControlTextarea1" class="form-label"> Comment </label>
+			<textarea [class.is-invalid]="inputStatus('body')" formControlName="body" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write your comment here..."></textarea>
+			<label *ngIf="inputStatus('body')" class="text-danger fadeIn"> please enter between 10 and 30 characters </label>
+		</div>
+		<div class="text-center">
+			<button class="btn btn-outline-primary w-15">
+				Submit
+				<i class="bi bi-chat-text mx-2"></i>
+			</button>
+		</div>
+	</form>
+	
+</div>
