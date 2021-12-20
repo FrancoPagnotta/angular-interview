@@ -13,14 +13,20 @@
   </li>
 </ol>
 
-<form action="" class="form bg-white text-dark m-5 p-4 rounded-3">
+<form [formGroup]="form" (ngSubmit)="save()" class="form bg-white text-dark m-5 p-4 rounded-3">
 	<div class="mb-3">
-		<label for="exampleFormControlInput1" class="form-label">Email address</label>
-		<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-		</div>
-	<div class="mb-3">
-		<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+		<label for="exampleFormControlInput1" class="form-label"> Name </label>
+		<input [class.is-invalid]="form.controls.name.status == 'INVALID'" formControlName="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Luis">
 	</div>
-	<button type="submit" class="btn btn-primary"> Submit </button>
+	<div class="mb-3">
+		<label for="exampleFormControlInput1" class="form-label"> Email address </label>
+		<input formControlName="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+	</div>
+	<div class="mb-3">
+		<label for="exampleFormControlTextarea1" class="form-label"> Comment </label>
+		<textarea formControlName="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write your comment here..."></textarea>
+	</div>
+	<div class="text-center">
+		<button class="btn btn-outline-primary w-25"> Submit </button>
+	</div>
 </form>
