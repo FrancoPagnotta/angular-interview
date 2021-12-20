@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-details',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor() { }
+  postId: any;
+  post: any = {};
+
+
+  constructor(private _activatedRoute: ActivatedRoute,
+              private _authService: AppService) { 
+    this._activatedRoute.params.subscribe(res => {
+      this.postId = res.id;
+      this.getItem(this.postId);
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+  getItem(id: number) {
+    this._authService.getListItem(id)
+      .subscribe(res => this.post = res);
   }
 
 }
