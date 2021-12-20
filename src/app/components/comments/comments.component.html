@@ -16,15 +16,18 @@
 <form [formGroup]="form" (ngSubmit)="save()" class="form bg-white text-dark m-5 p-4 rounded-3">
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label"> Name </label>
-		<input [class.is-invalid]="form.controls.name.status == 'INVALID'" formControlName="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Luis">
+		<input [class.is-invalid]="inputStatus('name')" formControlName="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Luis">
+		<label *ngIf="inputStatus('name')" class="text-danger fadeIn"> please enter at least 3 characters </label>
 	</div>
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label"> Email address </label>
-		<input formControlName="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+		<input [class.is-invalid]="inputStatus('email')" formControlName="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+		<label *ngIf="inputStatus('email')" class="text-danger fadeIn"> please enter an email like name@example.com </label>
 	</div>
 	<div class="mb-3">
 		<label for="exampleFormControlTextarea1" class="form-label"> Comment </label>
-		<textarea formControlName="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write your comment here..."></textarea>
+		<textarea [class.is-invalid]="inputStatus('comment')" formControlName="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="write your comment here..."></textarea>
+		<label *ngIf="inputStatus('comment')" class="text-danger fadeIn"> please enter between 10 and 30 characters </label>
 	</div>
 	<div class="text-center">
 		<button class="btn btn-outline-primary w-25"> Submit </button>
