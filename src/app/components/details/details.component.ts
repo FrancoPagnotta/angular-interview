@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Post } from 'src/app/models/post';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { AppService } from 'src/app/services/app.service';
 export class DetailsComponent implements OnInit {
 
   postId: number;
-  post: any = {};
+  post: Post = {} as Post;
 
 
   constructor(private _activatedRoute: ActivatedRoute,
@@ -30,7 +31,7 @@ export class DetailsComponent implements OnInit {
 
   getItem(id: number) {
     this._authService.getListItem(id)
-      .subscribe(res => this.post = res);
+      .subscribe((res: Post) => this.post = res);
   }
 
 }

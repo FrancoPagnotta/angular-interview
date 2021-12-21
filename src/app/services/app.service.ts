@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-
-import { map } from 'rxjs/operators';
-
+import { Post } from '../models/post';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,21 +11,16 @@ export class AppService {
 
   constructor(private _httClient: HttpClient) { }
 
-  getListItems() {
-    return this._httClient.get(`${this.url}/posts?_page=0&_limit=10`) // tipar metodos y tipar get 
-      .pipe(
-        map((res: any) => {
-          return res;
-        })
-      )
+  getListItems(): Observable<Post[]> {
+    return this._httClient.get<Post[]>(`${this.url}/posts?_page=0&_limit=10`); // tipar metodos y tipar get 
   }
   
-  getListItem(id: number) {
-    return this._httClient.get(`${this.url}/posts/${id}`);
+  getListItem(id: number): Observable<Post> {
+    return this._httClient.get<Post>(`${this.url}/posts/${id}`);
   }
   
-  getComments(id: number) {
-    return this._httClient.get(`${this.url}/posts/${id}/comments`);
+  getComments(id: number): Observable<Comment[]> {
+    return this._httClient.get<Comment[]>(`${this.url}/posts/${id}/comments`);
   }
 
 }

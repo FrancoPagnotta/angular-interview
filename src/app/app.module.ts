@@ -8,13 +8,15 @@ import { DetailsComponent } from './components/details/details.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
     DetailsComponent,
-    CommentsComponent
+    CommentsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

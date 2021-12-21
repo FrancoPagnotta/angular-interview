@@ -4,6 +4,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from 'src/app/services/app.service';
 
+import { Comment } from 'src/app/models/comment';
+
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
@@ -12,8 +14,8 @@ import { AppService } from 'src/app/services/app.service';
 export class CommentsComponent implements OnInit {
 
   form: FormGroup;
-  apiComments: any;
-  comments: any = [];
+  apiComments: Array<Comment>;
+  comments: Array<Comment> = [];
   @Input() id: number;
 
   constructor(private _formBuilder: FormBuilder,
@@ -40,8 +42,9 @@ export class CommentsComponent implements OnInit {
 
   viewComments() {
     this._appService.getComments(this.id)
-    .subscribe(res => {
+     .subscribe((res: any) => {
       this.apiComments = res;
+      console.log(res)
     });
   }
   

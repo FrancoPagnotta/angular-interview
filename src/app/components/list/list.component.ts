@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Post } from 'src/app/models/post';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
@@ -9,15 +10,13 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class ListComponent implements OnInit {
 
-  listItems: Array<any> = [];
+  listItems: Array<Post> = [];
 
   constructor(private _appService: AppService,
               private _router: Router) { 
 
     this._appService.getListItems()
-      .subscribe((res: any) => {
-        this.listItems = res;
-      });
+      .subscribe((res: Post[]) => this.listItems = res);
   }
 
   ngOnInit(): void {}
