@@ -1,6 +1,7 @@
 
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from 'src/app/services/app.service';
 
@@ -15,7 +16,8 @@ export class CommentsComponent implements OnInit {
   form: FormGroup;
   apiComments: Array<Comment> = [];
   comments: Array<Comment> = [];
-  date: Date;
+  comment: Comment;
+  date : string;
   @Input() id: number;
 
   constructor(private _formBuilder: FormBuilder,
@@ -48,10 +50,19 @@ export class CommentsComponent implements OnInit {
   }
   
   save() {
-    if (this.form.invalid) Object.values(this.form.controls).forEach(input => input.markAllAsTouched());
+
+    if (this.form.invalid) {
+      Object.values(this.form.controls).forEach(input => input.markAllAsTouched());
+      this.form.disable();
+    };
+
     this.comments.push(this.form.value);
     this.saveStorage();
     this.form.reset();
+
+    this.date = (new Date().getDate()).toString() + '/' + (new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
+    localStorage.setItem(`date post ${this.id}`,this.date);
+
     return;
   }
 
@@ -60,7 +71,6 @@ export class CommentsComponent implements OnInit {
   }
 
   loadStorage() {
-    // this.comments = JSON.parse(localStorage.getItem(`post${this.id}`) || '[]');
     if (localStorage.getItem(`post${this.id}`)) this.comments = JSON.parse(localStorage.getItem(`post${this.id}`) || '');
     else this.comments = [];
   }

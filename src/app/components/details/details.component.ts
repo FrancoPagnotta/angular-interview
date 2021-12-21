@@ -12,6 +12,7 @@ export class DetailsComponent implements OnInit {
 
   postId: number;
   post: Post = {} as Post;
+  lastCommentDate: string;
 
 
   constructor(private _activatedRoute: ActivatedRoute,
@@ -27,11 +28,19 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getLastCommentDate();
   }
 
   getItem(id: number) {
     this._authService.getListItem(id)
       .subscribe((res: Post) => this.post = res);
+  }
+
+  getLastCommentDate() {
+    localStorage.getItem(`date post ${this.postId}`) 
+    ? this.lastCommentDate = JSON.stringify(localStorage.getItem(`date post ${this.postId}`))
+    : this.lastCommentDate = '';
+    
   }
 
 }
