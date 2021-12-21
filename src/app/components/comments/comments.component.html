@@ -20,7 +20,10 @@
 		  <div>
 			<p> <b> Email: </b> {{ comment.email }} </p>
 		  </div>
-			<p> <b> Comment: </b> {{ comment.body }} </p>
+		  <div>
+			  <p> <b> Comment: </b> {{ comment.body }} </p>
+			</div>
+			<p> <b> Date: </b> {{ commentDate }} </p>
 		</div>
 		<button (click)="deleteComment(i)" class="btn btn-outline-danger">
 			<i class="bi bi-trash"></i>

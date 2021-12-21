@@ -17,7 +17,7 @@ export class CommentsComponent implements OnInit {
   apiComments: Array<Comment> = [];
   comments: Array<Comment> = [];
   comment: Comment;
-  date : string;
+  commentDate : string;
   @Input() id: number;
 
   constructor(private _formBuilder: FormBuilder,
@@ -60,8 +60,7 @@ export class CommentsComponent implements OnInit {
     this.saveStorage();
     this.form.reset();
 
-    this.date = (new Date().getDate()).toString() + '/' + (new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
-    localStorage.setItem(`date post ${this.id}`,this.date);
+    this.commentDate = (new Date().getDate()).toString() + '/' + (new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
 
     return;
   }
