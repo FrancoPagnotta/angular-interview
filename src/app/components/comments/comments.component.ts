@@ -57,21 +57,25 @@ export class CommentsComponent implements OnInit {
     };
 
     this.comments.push(this.form.value);
+    this.commentDate = (new Date().getDate()).toString() + '/' + (new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
     this.saveStorage();
     this.form.reset();
 
-    this.commentDate = (new Date().getDate()).toString() + '/' + (new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
 
     return;
   }
 
   saveStorage() {
     localStorage.setItem(`post${this.id}`,JSON.stringify(this.comments));
+    localStorage.setItem(`commentsPost${this.id}`,JSON.stringify(this.commentDate));
   }
 
   loadStorage() {
     if (localStorage.getItem(`post${this.id}`)) this.comments = JSON.parse(localStorage.getItem(`post${this.id}`) || '');
     else this.comments = [];
+
+    if (localStorage.getItem(`commentsPost${this.id}`)) this.commentDate = JSON.parse(localStorage.getItem(`commentsPost${this.id}`) || '');
+    else this.commentDate = '';
   }
 
   deleteComment(index : number) {
