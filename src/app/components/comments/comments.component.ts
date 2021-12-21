@@ -23,9 +23,12 @@ export class CommentsComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.loadStorage();
+    // this.loadStorage();
     this.viewComments();
     console.log(this.comments);
+
+    if (localStorage.getItem(`post${this.id}`)) this.comments = JSON.parse(localStorage.getItem(`post${this.id}`) || '');
+    else this.comments = [];
   }
 
   createForm() {
@@ -55,11 +58,11 @@ export class CommentsComponent implements OnInit {
   }
 
   saveStorage() {
-    localStorage.setItem('comments',JSON.stringify(this.comments));
+    localStorage.setItem(`post${this.id}`,JSON.stringify(this.comments));
   }
 
   loadStorage() {
-    this.comments = JSON.parse(localStorage.getItem('comments') || '[]');
+    this.comments = JSON.parse(localStorage.getItem(`post${this.id}`) || '[]');
   }
 
   deleteComment(index : number) {
