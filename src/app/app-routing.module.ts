@@ -7,8 +7,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 const routes: Routes = [
   { path: 'posts', component: ListComponent },
   { path: 'post/:id', component: DetailsComponent },
-  { path: '404', component: PageNotFoundComponent },
-  { path: '**', pathMatch: 'full' , redirectTo: '404' }
+  // { path: '404', component: PageNotFoundComponent },
+  // { path: '**', pathMatch: 'full' , redirectTo: '404' }
+  { path: '**', pathMatch: 'full' , redirectTo: 'posts' }
 ];
 
 @NgModule({

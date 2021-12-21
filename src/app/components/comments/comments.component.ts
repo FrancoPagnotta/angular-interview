@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from 'src/app/services/app.service';
 
 import { Comment } from 'src/app/models/comment';
-
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
@@ -14,7 +13,7 @@ import { Comment } from 'src/app/models/comment';
 export class CommentsComponent implements OnInit {
 
   form: FormGroup;
-  apiComments: Array<Comment>;
+  apiComments: Array<Comment> = [];
   comments: Array<Comment> = [];
   @Input() id: number;
 
@@ -26,6 +25,7 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
     this.loadStorage();
     this.viewComments();
+    console.log(this.comments);
   }
 
   createForm() {
@@ -44,12 +44,10 @@ export class CommentsComponent implements OnInit {
     this._appService.getComments(this.id)
      .subscribe((res: any) => {
       this.apiComments = res;
-      console.log(res)
     });
   }
   
   save() {
-    console.log(this.form);
     if (this.form.invalid) Object.values(this.form.controls).forEach(input => input.markAllAsTouched());
     this.comments.push(this.form.value);
     this.saveStorage();
@@ -61,7 +59,7 @@ export class CommentsComponent implements OnInit {
   }
 
   loadStorage() {
-    this.comments = JSON.parse(localStorage.getItem('comments') || '{}');
+    this.comments = JSON.parse(localStorage.getItem('comments') || '[]');
   }
 
   deleteComment(index : number) {
