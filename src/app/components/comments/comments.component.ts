@@ -53,14 +53,12 @@ export class CommentsComponent implements OnInit {
 
     if (this.form.invalid) {
       Object.values(this.form.controls).forEach(input => input.markAllAsTouched());
-      this.form.disable();
-    };
-
-    this.comments.push(this.form.value);
-    this.commentDate = (new Date().getDate()).toString() + '/' + (new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
-    this.saveStorage();
-    this.form.reset();
-
+    } else {
+      this.comments.push(this.form.value);
+      this.commentDate = (new Date().getDate()).toString() + '/' + (new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
+      this.saveStorage();
+      this.form.reset();
+    }
 
     return;
   }
