@@ -18,6 +18,7 @@ describe('CommentsComponent', () => {
     })
     .compileComponents();
   });
+  
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CommentsComponent);
@@ -43,7 +44,7 @@ describe('CommentsComponent', () => {
     control?.setValue('');
     
     expect(control?.valid).toBeFalsy();
-  }
+  };
 
   it('The email must be valid'), () => {
 
@@ -51,5 +52,6 @@ describe('CommentsComponent', () => {
     control?.setValue('name123@gmail.com');
   
     expect(control?.valid).toBeTruthy();
-  }
+  };
+
 });

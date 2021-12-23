@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { AppService } from 'src/app/services/app.service';
 
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -13,9 +14,11 @@ export class DetailsComponent implements OnInit {
   postId: number;
   post: Post = {} as Post;
   commentDateFromChild : string;
+  lastCommentate: string;
 
   constructor(private _activatedRoute: ActivatedRoute,
-              private _authService: AppService) {}
+              private _authService: AppService,
+              private _cdRef:ChangeDetectorRef) {}
               
   ngOnInit(): void {
 
@@ -25,6 +28,11 @@ export class DetailsComponent implements OnInit {
     });
 
     this._authService.getComments(this.postId);
+  }
+
+    ngAfterViewChecked() {
+   this.lastCommentate = this.commentDateFromChild;
+  this._cdRef.detectChanges();
   }
 
   getItem(id: number) {

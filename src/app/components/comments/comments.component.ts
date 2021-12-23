@@ -57,7 +57,6 @@ export class CommentsComponent implements OnInit {
     } else {
       this.comments.push(this.form.value);
       this.commentDate = (new Date().getDate()).toString() + '/' + (new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
-      
       this.sendDateToParent();
      
       this.saveStorage();

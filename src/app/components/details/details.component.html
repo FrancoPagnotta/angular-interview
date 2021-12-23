@@ -18,7 +18,7 @@
 		<h2 class="mt-5"> Comments </h2>
 		<hr>
 		<h5>
-			Last Comment: <small class="fw-normal fst-italic"> {{ commentDateFromChild }}  </small>
+			Last Comment: <small class="fw-normal fst-italic"> {{ lastCommentate }}  </small>
 		</h5>	
 		<app-comments (sendDate)="getDate($event)" [id]="postId"></app-comments>
 	</div>
