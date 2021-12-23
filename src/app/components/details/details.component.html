@@ -1,5 +1,5 @@
 <div class="container my-5 text-light fadeIn">
-	<h1> Detail <small> Post: {{ postId }} </small> </h1>
+	<h1> Detail <small class="fw-normal"> Post: {{ postId }} </small> </h1>
 	
 	<hr>
 	
@@ -16,8 +16,11 @@
 	</div>
 	<div class="card p-4 bg-light inline-text text-black">
 		<h2 class="mt-5"> Comments </h2>
-		<hr>		
-		<app-comments [id]="postId"></app-comments>
+		<hr>
+		<h5>
+			Last Comment: <small class="fw-normal fst-italic"> {{ commentDateFromChild }}  </small>
+		</h5>	
+		<app-comments (sendDate)="getDate($event)" [id]="postId"></app-comments>
 	</div>
 
 </div>

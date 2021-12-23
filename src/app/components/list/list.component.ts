@@ -19,7 +19,8 @@ export class ListComponent implements OnInit {
       .subscribe((res: Post[]) => this.listItems = res);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   viewItem(id: number) {
     this._router.navigate(['/post',id]);

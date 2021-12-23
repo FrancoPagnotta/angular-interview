@@ -18,16 +18,17 @@ export class CommentsComponent implements OnInit {
   comments: Array<Comment> = [];
   comment: Comment;
   commentDate : string;
+  @Output() sendDate : EventEmitter<string> = new EventEmitter;
   @Input() id: number;
 
   constructor(private _formBuilder: FormBuilder,
-              private _appService: AppService) { 
-    this.createForm();
-  }
-  
+              private _appService: AppService) {}
+              
   ngOnInit(): void {
+    this.createForm();
     this.loadStorage();
     this.viewComments();
+    this.sendDateToParent();
   }
 
   createForm() {
@@ -56,6 +57,9 @@ export class CommentsComponent implements OnInit {
     } else {
       this.comments.push(this.form.value);
       this.commentDate = (new Date().getDate()).toString() + '/' + (new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
+      
+      this.sendDateToParent();
+     
       this.saveStorage();
       this.form.reset();
     }
@@ -79,5 +83,9 @@ export class CommentsComponent implements OnInit {
   deleteComment(index : number) {
     this.comments.splice(index, 1);
     this.saveStorage();
+  }
+
+  sendDateToParent() {
+    this.sendDate.emit(this.commentDate);
   }
 }
