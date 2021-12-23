@@ -1,1 +1,17 @@
-<img src="/src/assets/404.jpg" alt="">
+<div class="container">
+	<div class="alert alert-danger d-flex align-items-center my-5" role="alert">
+  		<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+		<div class="text-center">
+			<h4>
+				<i class="bi bi-signpost-split"></i>
+				Ups! 404 Error, you're on the wrong way .. do you want to go back? 
+			</h4>
+		</div>
+		<div class="mx-3">
+			<button [routerLink]="['/posts']" class="btn btn-outline-dark">
+				<i class="bi bi-arrow-bar-left"></i>
+				Go Back
+			</button>
+		</div>
+	</div>
+</div>

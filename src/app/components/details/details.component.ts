@@ -16,7 +16,7 @@ export class DetailsComponent implements OnInit {
   constructor(private _activatedRoute: ActivatedRoute,
               private _authService: AppService) { 
 
-    this._activatedRoute.params.subscribe(res => {
+    this._activatedRoute.params.subscribe((res) => {
       this.postId = res.id;
       this.getItem(this.postId);
     });
