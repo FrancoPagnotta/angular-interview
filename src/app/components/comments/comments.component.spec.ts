@@ -38,20 +38,52 @@ describe('CommentsComponent', () => {
  
   });
   
-  it('The email must be provided'), () => {
+  it('The email must be provided', () => {
 
     const control = component.form.get('email');
     control?.setValue('');
     
     expect(control?.valid).toBeFalsy();
-  };
+  });
 
-  it('The email must be valid'), () => {
+  it('The email must be invalid', () => {
 
     const control = component.form.get('email');
-    control?.setValue('name123@gmail.com');
+    control?.setValue('name123');
+  
+    expect(control?.valid).toBeFalsy();
+  });
+
+  it('The email must be invalid', () => {
+
+    const control = component.form.get('email');
+    control?.setValue('name123@');
+  
+    expect(control?.valid).toBeFalsy();
+  });
+
+  it('The email must be invalid', () => {
+
+    const control = component.form.get('email');
+    control?.setValue('name123@name');
+  
+    expect(control?.valid).toBeFalsy();
+  });
+
+  it('The email must be invalid', () => {
+
+    const control = component.form.get('email');
+    control?.setValue('name123@name.');
+  
+    expect(control?.valid).toBeFalsy();
+  });
+
+  it('The email must be valid', () => {
+
+    const control = component.form.get('email');
+    control?.setValue('name123@name.com');
   
     expect(control?.valid).toBeTruthy();
-  };
+  });
 
 });
