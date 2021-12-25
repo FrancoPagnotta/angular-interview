@@ -17,7 +17,7 @@ export class DetailsComponent implements OnInit {
   lastCommentate: string;
 
   constructor(private _activatedRoute: ActivatedRoute,
-              private _authService: AppService,
+              private _appService: AppService,
               private _cdRef:ChangeDetectorRef) {}
               
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class DetailsComponent implements OnInit {
       this.getItem(this.postId);
     });
 
-    this._authService.getComments(this.postId);
+    this._appService.getComments(this.postId);
   }
 
     ngAfterViewChecked() {
@@ -36,7 +36,7 @@ export class DetailsComponent implements OnInit {
   }
 
   getItem(id: number) {
-    this._authService.getListItem(id)
+    this._appService.getListItem(id)
       .subscribe((res: Post) => this.post = res);
   }
 
