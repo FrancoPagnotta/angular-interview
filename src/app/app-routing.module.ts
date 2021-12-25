@@ -5,10 +5,11 @@ import { ListComponent } from './components/list/list.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/posts', pathMatch: 'full' },
   { path: 'posts', component: ListComponent },
   { path: 'post/:id', component: DetailsComponent },
   { path: '404', component: PageNotFoundComponent },
-  { path: '**', redirectTo: '404' }
+  { path: '**', redirectTo: '/404', pathMatch: 'full' },
 ];
 
 @NgModule({
