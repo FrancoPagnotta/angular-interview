@@ -28,7 +28,7 @@ export class CommentsComponent implements OnInit {
     this.createForm();
     this.loadStorage();
     this.viewComments();
-    this.sendDateToParent();
+    this.sendDateToParent();  
   }
 
   createForm() {
@@ -82,6 +82,12 @@ export class CommentsComponent implements OnInit {
   deleteComment(index : number) {
     this.comments.splice(index, 1);
     this.saveStorage();
+
+    if (this.comments.length === 0) {
+      this.commentDate = '';
+      this.sendDate.emit('');
+
+    }
   }
 
   sendDateToParent() {

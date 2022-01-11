@@ -35,9 +35,9 @@ export class DetailsComponent implements OnInit {
     this._appService.getComments(this.postId);
   }
 
-    ngAfterViewChecked() {
-   this.lastCommentate = this.commentDateFromChild;
-  this._cdRef.detectChanges();
+  ngAfterViewChecked() {
+    this.lastCommentate = this.commentDateFromChild;
+    this._cdRef.detectChanges();
   }
 
   getItem(id: number) {
