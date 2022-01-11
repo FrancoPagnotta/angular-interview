@@ -55,8 +55,8 @@ export class CommentsComponent implements OnInit {
     if (this.form.invalid) {
       Object.values(this.form.controls).forEach(input => input.markAllAsTouched());
     } else {
-      this.comments.push(this.form.value);
       this.commentDate = (new Date().getDate()).toString() + '/' + (new Date().getMonth() + 1).toString() + '/' + new Date().getFullYear().toString();
+      this.comments.push({...this.form.value,date: this.commentDate});
       this.sendDateToParent();
      
       this.saveStorage();
@@ -68,7 +68,7 @@ export class CommentsComponent implements OnInit {
 
   saveStorage() {
     localStorage.setItem(`post${this.id}`,JSON.stringify(this.comments));
-    localStorage.setItem(`commentsPost${this.id}`,JSON.stringify(this.commentDate));
+    // localStorage.setItem(`commentsPost${this.id}`,JSON.stringify(this.commentDate));
   }
 
   loadStorage() {
@@ -86,7 +86,6 @@ export class CommentsComponent implements OnInit {
     if (this.comments.length === 0) {
       this.commentDate = '';
       this.sendDate.emit('');
-
     }
   }
 
